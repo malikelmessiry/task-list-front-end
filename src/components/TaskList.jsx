@@ -29,3 +29,21 @@ TaskList.propTypes = {
 };
 
 export default TaskList;
+
+// new code to replace old code:
+// const TaskList = ({ tasks, onToggleComplete, onDelete }) => {
+//   return (
+//     <ul>
+//       {tasks.map(task => (
+//         <Task 
+//           key={task.id} 
+//           id={task.id}
+//           title={task.title}
+//           isComplete={task.isComplete}
+//           onToggleComplete={onToggleComplete}
+//           onDelete={onDelete}
+//         />
+//       ))}
+//     </ul>
+//   );
+// };
