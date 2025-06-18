@@ -1,4 +1,5 @@
 import TaskList from './components/TaskList.jsx';
+import NewTaskForm from './components/NewTaskForm.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -57,12 +58,24 @@ const App = () => {
     }
   };
 
+  // Add new task
+  const addTask = async (title) => {
+    try {
+      const response = await axios.post(`${kBaseURL}/tasks`, { title });
+      const newTask = taskApiToJson(response.data.task);
+      setTasks((prev) => [...prev, newTask]);
+    } catch (error) {
+      console.error('Error adding task:', error);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Ada's Task List</h1>
       </header>
       <main>
+        <NewTaskForm onAddTask={addTask} />
         <TaskList
           tasks={tasks}
           onToggleComplete={updateTask}
