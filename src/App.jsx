@@ -4,7 +4,8 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const kBaseURL = 'http://localhost:5000';
+const kBaseURL = import.meta.env.VITE_BASE_URL;
+// console.log("Base URL:", kBaseURL);
 
 // Transform API response to match frontend
 const taskApiToJson = (task) => {

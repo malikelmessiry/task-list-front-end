@@ -2,22 +2,25 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Task.css';
 
+const kDefaultFormState = { title: '' };
+
 const NewTaskForm = ({ onAddTask }) => {
-    const [title, setTitle] = useState('');
+    const [formData, setFormData] = useState(kDefaultFormState);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!title.trim()) return;
-        onAddTask(title.trim());
-        setTitle('');
+        if (!formData.title.trim()) return;
+        onAddTask(formData.title.trim());
+        setFormData(kDefaultFormState);
     };
 
     return (
         <form className="new-task-form" onSubmit={handleSubmit}>
         <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            name="title"
+            value={formData.title}
+            onChange={e => setFormData({ ...formData, title: e.target.value })}
             placeholder="New task title"
             required
         />
